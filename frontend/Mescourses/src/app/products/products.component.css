@@ -1,0 +1,28 @@
+table {
+    text-align: center;
+    width: 100%;
+}
+
+.filter{
+    font-size: 14px;
+    width: 100%;
+}
+  
+.mat-fab {
+    color: #f0fff3;
+    background-color: #FFD206;
+}
+
+tr.mat-footer-row {
+    font-weight: bold;
+    text-align: center;
+}
+
+.mat-header-cell {
+    text-align: center;
+}
+
+:host ::ng-deep .mat-sort-header-container {
+    display: flex;
+    justify-content: center;
+}

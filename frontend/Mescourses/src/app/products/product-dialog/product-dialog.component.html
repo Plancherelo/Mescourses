@@ -1,0 +1,75 @@
+<!-- Titre du formulaire-->
+<h1 mat-dialog-title>{{dialgo_title}} un produit</h1>
+
+<div mat-dialog-content>
+<!-- Déclare un formulaire conformément à la description dans le fichier .ts -->
+<form [formGroup]="product_form">
+  
+  <!-- Champs nom -->
+  <mat-form-field appearance="outline">
+    <mat-label>Nom</mat-label>
+    <input formControlName="product_name" matInput placeholder="Placeholder" autocomplete="off" name="Nom du produit"
+      cdkFocusInitial placeholder="Nom du produit">
+    <mat-icon matSuffix>assignment</mat-icon>
+  </mat-form-field>
+
+  <!-- Champs quantité-->
+  <mat-form-field appearance="outline">
+    <mat-label>Quantité</mat-label>
+    <input formControlName="product_quantity" matInput placeholder="Placeholder" autocomplete="on" name="Quantité du produit"
+      cdkFocusInitial placeholder="Quantité du produit">
+    <mat-icon matSuffix>scatter_plot</mat-icon>
+  </mat-form-field>
+
+  <!-- Champs magasin -->
+  <mat-form-field appearance="outline">
+    <mat-label>Magasin</mat-label>
+      <mat-select formControlName="product_shop" name="Magasin" cdkFocusInitial placeholder="Magasin">
+          <mat-option *ngFor="let shop of shops" [value]="shop">{{shop.shop_name}}</mat-option>
+      </mat-select>
+    <mat-icon matSuffix>shopping_cart</mat-icon>
+  </mat-form-field>
+
+  <!-- Champs catégorie -->
+  <mat-form-field appearance="outline">
+    <mat-label>Catégorie</mat-label>
+      <mat-select formControlName="product_category" name="category" cdkFocusInitial placeholder="Catégorie">
+        <mat-option *ngFor="let category of categories" [value]="category">{{category.category_name}}</mat-option>
+      </mat-select>
+    <mat-icon matSuffix>apps</mat-icon>
+  </mat-form-field>
+
+  <!-- Champs budget-->
+  <mat-form-field appearance="outline">
+    <mat-label>Budget</mat-label>
+    <input formControlName="product_budget" matInput placeholder="Placeholder" autocomplete="off" name="Budget"
+      cdkFocusInitial placeholder="0.00">
+      <span matSuffix>CHF</span>
+    <mat-hint>Par ex : 2.5</mat-hint>
+  </mat-form-field>
+
+  <!-- Champs prix-->
+  <mat-form-field appearance="outline">
+    <mat-label>Prix</mat-label>
+    <input formControlName="product_price" matInput placeholder="Placeholder" autocomplete="off" name="Prix"
+      cdkFocusInitial placeholder="0.00">
+      <span matSuffix>CHF</span>
+    <mat-hint>Par ex : 2.5</mat-hint>
+  </mat-form-field>
+
+  <!-- Champs description-->
+  <mat-form-field appearance="outline">
+    <mat-label>Description</mat-label>
+    <textarea formControlName="product_description" matInput placeholder="Placeholder" autocomplete="off"
+      name="Description du produit" cdkFocusInitial placeholder="A' propos de ce produit..."></textarea>
+  </mat-form-field>
+  
+</form>
+</div>
+
+<!-- Boutons pour annuler ou ajouter un magasin -->
+<div mat-dialog-actions>
+  <span class="spacer"></span>
+  <button mat-raised-button type="button" mat-button color="warn" mat-dialog-close>Annuler</button>
+  <button mat-raised-button type="submit" mat-button color="primary" [disabled]="!product_form.valid" (click)="product_dialogRef.close(this.product_form.value)">Sauvegarder</button>
+</div>

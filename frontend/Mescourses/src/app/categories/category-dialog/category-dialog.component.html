@@ -1,0 +1,23 @@
+<!-- Titre du formulaire-->
+<h1 mat-dialog-title>{{dialgo_title}} une catégorie</h1>
+
+<div mat-dialog-content>
+
+  <!-- Déclare un formulaire conformément à la description dans le fichier .ts -->
+  <form [formGroup]="category_form">
+
+    <mat-form-field appearance="legacy">
+      <mat-label>Nom</mat-label>
+      <input formControlName="category_name" matInput placeholder="Placeholder" autocomplete="off" name="Nom de la categorie"
+      cdkFocusInitial placeholder="Nom de la catégorie">
+      <mat-icon matSuffix>assignment</mat-icon>
+    </mat-form-field>
+
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <span class="spacer"></span>
+  <button mat-raised-button type="button" mat-button color="warn" mat-dialog-close>Annuler</button>
+  <button mat-raised-button type="submit" mat-button color="primary" [disabled]="!category_form.valid" (click)="category_dialogRef.close(this.category_form.value)">Sauvegarder</button>
+</div>

@@ -1,0 +1,43 @@
+backend/node_modules
+frontend/Mescourses/node_modules
+
+# From Angular
+# Compiled output
+frontend/Mescourses/dist
+frontend/Mescourses/tmp
+frontend/Mescourses/out-tsc
+frontend/Mescourses/bazel-out
+
+# Node
+frontend/Mescourses/npm-debug.log
+frontend/Mescourses/yarn-error.log
+
+# IDEs and editors
+frontend/Mescourses/.idea/
+frontend/Mescourses/.project
+frontend/Mescourses/.classpath
+frontend/Mescourses/.c9/
+frontend/Mescourses/*.launch
+frontend/Mescourses/.settings/
+frontend/Mescourses/*.sublime-workspace
+
+# Visual Studio Code
+frontend/Mescourses/.vscode/*
+frontend/Mescourses/!.vscode/settings.json
+frontend/Mescourses/!.vscode/tasks.json
+frontend/Mescourses/!.vscode/launch.json
+frontend/Mescourses/!.vscode/extensions.json
+frontend/Mescourses/.history/*
+
+# Miscellaneous
+frontend/Mescourses/.angular/cache
+frontend/Mescourses/.sass-cache/
+frontend/Mescourses/connect.lock
+frontend/Mescourses/coverage
+frontend/Mescourses/libpeerconnection.log
+frontend/Mescourses/testem.log
+frontend/Mescourses/typings
+
+# System files
+frontend/Mescourses/.DS_Store
+frontend/Mescourses/Thumbs.db

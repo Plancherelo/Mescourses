@@ -1,0 +1,31 @@
+<!-- Titre du formulaire-->
+<h1 mat-dialog-title>{{dialgo_title}} une liste de courses</h1>
+
+<!-- Déclare un formulaire conformément à la description dans le fichier .ts -->
+<form [formGroup]="shoppings_form">
+  
+  <!-- Champs nom -->
+  <mat-form-field appearance="outline">
+    <mat-label>Nom</mat-label>
+    <input formControlName="products_name" matInput placeholder="Placeholder" autocomplete="off" name="Nom de la liste de courses"
+      cdkFocusInitial placeholder="Nom de la liste de courses">
+    <mat-icon matSuffix>assignment</mat-icon>
+  </mat-form-field>
+
+  <!-- Champs date-->
+  <mat-form-field appearance="outline">
+    <mat-label>Date</mat-label>
+    <input formControlName="products_date" autocomplete="off" matInput [matDatepicker]="picker" name="Date" cdkFocusInitial placeholder="Choisir une date">
+    <mat-hint>JJ/MM/AAAA</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker touchUi #picker></mat-datepicker>
+  </mat-form-field>
+
+</form>
+
+<!-- Boutons pour annuler ou ajouter une liste de courses -->
+<div mat-dialog-actions>
+  <span class="spacer"></span>
+  <button mat-raised-button type="button" mat-button color="warn" mat-dialog-close>Annuler</button>
+  <button mat-raised-button type="submit" mat-button color="primary" [disabled]="!shoppings_form.valid" (click)="shoppings_dialogRef.close(this.shoppings_form.value)">Sauvegarder</button>
+</div>

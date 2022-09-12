@@ -1,0 +1,29 @@
+<!-- Titre du formulaire-->
+<h1 mat-dialog-title>{{dialgo_title}} un magasin</h1>
+
+<!-- Déclare un formulaire conformément à la description dans le fichier .ts -->
+<form [formGroup]="shop_form">
+  
+  <!-- Champs nom -->
+  <mat-form-field appearance="outline">
+    <mat-label>Nom</mat-label>
+    <input formControlName="shop_name" matInput placeholder="Placeholder" autocomplete="on" name="Nom du magasin"
+      cdkFocusInitial placeholder="Nom du magasin">
+    <mat-icon matSuffix>assignment</mat-icon>
+  </mat-form-field>
+
+  <!-- Champs description-->
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea formControlName="shop_description" matInput placeholder="Placeholder" autocomplete="off"
+      name="Description du magasin" cdkFocusInitial placeholder="A' propos de ce magasin..."></textarea>
+  </mat-form-field>
+
+</form>
+
+<!-- Boutons pour annuler ou ajouter un magasin -->
+<div mat-dialog-actions>
+  <span class="spacer"></span>
+  <button mat-raised-button type="button" mat-button color="warn" mat-dialog-close>Annuler</button>
+  <button mat-raised-button type="submit" mat-button color="primary" [disabled]="!shop_form.valid" (click)="shop_dialogRef.close(this.shop_form.value)">Sauvegarder</button>
+</div>

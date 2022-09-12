@@ -1,0 +1,100 @@
+<div>
+  <h4>{{date | date : 'd MMMM YYYY'  : '' : 'fr'}}</h4>
+  <h2 style="text-align:center">{{title}}</h2>
+</div>
+
+<mat-form-field appearance="standard" class="filter">
+  <mat-label>Filtre</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Orange" #input autocomplete="off">
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table" matSort>
+
+  <!-- Colonne ID - n'est pas affichée cependant requise pour obtenir l'ID-->
+  <ng-container matColumnDef="_id">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let row"></td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+
+  <!-- Colonne Check -->
+  <ng-container matColumnDef="product_check">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Trier par coché"></th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox class="example-margin" [(ngModel)]="row.product_check" (click)="onClickCheck(row, row._id)"></mat-checkbox>
+    </td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+
+  <!-- Colonne Nom -->
+  <ng-container matColumnDef="product_name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
+    <td mat-cell *matCellDef="let row"> {{row.product_name}} </td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+
+  <!-- Colonne Quantié -->
+  <ng-container matColumnDef="product_quantity">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Quantité</th>
+    <td mat-cell *matCellDef="let row"> {{row.product_quantity}} </td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+  
+  <!-- Colonne Magasin -->
+  <ng-container matColumnDef="product_shop">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Magasin</th>
+    <td mat-cell *matCellDef="let row"> {{row.product_shop?.shop_name}} </td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+
+  <!-- Colonne Catégorie -->
+  <ng-container matColumnDef="product_category">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Catégorie</th>
+    <td mat-cell *matCellDef="let row"> {{row.product_category?.category_name}} </td>
+    <td mat-footer-cell *matFooterCellDef>Total (en CHF)</td>
+  </ng-container>
+
+  <!-- Colonne Budget -->
+  <ng-container matColumnDef="product_budget">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Budget</th>
+    <td mat-cell *matCellDef="let row"> {{row.product_budget}} </td>
+    <td mat-footer-cell *matFooterCellDef>{{sumBudget}}</td>
+  </ng-container>
+
+  <!-- Colonne Prix -->
+  <ng-container matColumnDef="product_price">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Prix</th>
+    <td mat-cell *matCellDef="let row"> {{row.product_price}} </td>
+    <td mat-footer-cell *matFooterCellDef>{{sumTotal}}</td>
+  </ng-container>
+
+  <!-- Colonne Description -->
+  <ng-container matColumnDef="product_description">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+    <td mat-cell *matCellDef="let row"> {{row.product_description}} </td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+
+  <!-- Colonne Actions - Bouttons Modifier et supprimer -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+    <td mat-cell *matCellDef="let row">
+      <button mat-icon-button color="primary" (click)="editProduct(row, row._id)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="deleteProduct(row._id, row.product_name)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+  
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngStyle]="{'background-color':row.product_check ? 'lime' : ''}"></tr>
+  <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+ 
+</table>
+  
+<button mat-fab (click)="addProduct()" aria-label="Add">
+  <mat-icon>add</mat-icon>
+</button>
